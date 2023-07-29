@@ -26,4 +26,31 @@ const getAllEpisodes = () => {
   });
 };
 
-export { getAllEpisodes };
+// Группировка списка эпизодов по сезонам
+const groupBySeasons = (episodes) => {
+  let arr = [];
+  episodes.forEach((item) => {
+    // Определение текущего сезона
+    const currentSeason = item.episode
+      .match(/S(\d+)E/)[1]
+      .replace(/0(\d+)/, "$1");
+    const s = currentSeason - 1;
+    // Если сезон еще не существует, создать сезон и поместить эпизод, иначе поместить эпизод
+    !arr[s] ? (arr[s] = [item]) : arr[s].push(item);
+  });
+  return arr;
+};
+
+// Получение сгруппированного списка эпизодов
+const getEpisodesBySeason = () => {
+  return getAllEpisodes().then((episodes) => {
+    return groupBySeasons(episodes);
+  });
+};
+
+// Получение эпизода
+const getEpisode = (number) => {
+  return getResource(`episode/${number}`);
+};
+
+export { getEpisodesBySeason, getEpisode };

@@ -1,6 +1,6 @@
 <template>
   <div class="seasonlist_item">
-    <div>Сезон: 1</div>
+    <div>Сезон: 1 {{ episodeList }}</div>
     <ul>
       <li><a href="#">Серия № вышла</a></li>
     </ul>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { getAllEpisodes } from "@/api/api";
+import { getEpisodesBySeason } from "@/api/api";
 export default {
   name: "SeasonListItem",
   data() {
@@ -17,7 +17,9 @@ export default {
     };
   },
   created() {
-    getAllEpisodes().then((episodes) => (this.episodeList = [...episodes]));
+    getEpisodesBySeason().then(
+      (episodes) => (this.episodeList = [...episodes])
+    );
   },
 };
 </script>
