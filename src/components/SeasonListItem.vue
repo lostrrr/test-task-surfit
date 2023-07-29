@@ -8,8 +8,17 @@
 </template>
 
 <script>
+import { getAllEpisodes } from "@/api/api";
 export default {
   name: "SeasonListItem",
+  data() {
+    return {
+      episodeList: [],
+    };
+  },
+  created() {
+    getAllEpisodes().then((episodes) => (this.episodeList = [...episodes]));
+  },
 };
 </script>
 
