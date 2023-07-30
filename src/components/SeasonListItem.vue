@@ -1,9 +1,18 @@
 <template>
-  <div class="seasonlist_item">
-    <div>Сезон: 1 {{ episodeList }}</div>
-    <ul>
-      <li><a href="#">Серия № вышла</a></li>
-    </ul>
+  <div>
+    <template v-for="(season, i) in episodeList" :key="`season-${season}`">
+      <div v-if="season.length > 0" class="seasonlist_item">
+        <div>Сезон: {{ i + 1 }}</div>
+        <ul>
+          <li v-for="episode in season" :key="episode.id">
+            <a href="">
+              Серия {{ episode.episode }} "{{ episode.name }}" вышла
+              {{ episode.air_date }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </template>
   </div>
 </template>
 
