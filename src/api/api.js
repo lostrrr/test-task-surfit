@@ -53,4 +53,11 @@ const getEpisode = (number) => {
   return getResource(`episode/${number}`);
 };
 
-export { getEpisodesBySeason, getEpisode };
+// Получение персонажей
+const getCharacters = (characterList) => {
+  // Формирование массива из id персонажей, трансформация ссылки в id
+  characterList = characterList.map((item) => item.match(/\/(\d+)/)[1]);
+  return getResource(`character/${characterList}`);
+};
+
+export { getEpisodesBySeason, getEpisode, getCharacters };

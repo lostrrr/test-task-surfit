@@ -9,18 +9,24 @@
           Серия {{ episode.id }} {{ episode.name }} вышла
           {{ episode.air_date }}
         </div>
+        <EpisodeItemPersonList :persons="persons"></EpisodeItemPersonList>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getEpisode } from "@/api/api";
+import { getEpisode, getCharacters } from "@/api/api";
+import EpisodeItemPersonList from "./EpisodeItemPersonList.vue";
 export default {
   name: "EpisodeItem",
+  components: {
+    EpisodeItemPersonList,
+  },
   data() {
     return {
       episode: {},
+      persons: [],
     };
   },
   props: {
@@ -31,6 +37,7 @@ export default {
   created() {
     getEpisode(this.episodeId).then((ep) => {
       this.episode = ep;
+      getCharacters(ep.characters).then((chars) => (this.persons = chars));
     });
   },
 };
