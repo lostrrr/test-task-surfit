@@ -5,10 +5,11 @@
         <div>Сезон: {{ i + 1 }}</div>
         <ul>
           <li v-for="episode in season" :key="episode.id">
-            <a href="">
-              Серия {{ episode.episode }} "{{ episode.name }}" вышла
+            <router-link :to="`/episode/${episode.id}`">
+              Серия {{ getEpisodeNumber(episode.episode) }} "{{ episode.name }}"
+              вышла
               {{ episode.air_date }}
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -22,6 +23,12 @@ export default {
   props: {
     episodeList: {
       type: Array,
+    },
+  },
+  methods: {
+    // Метод заменяет строку вида "S01E01" на "1"
+    getEpisodeNumber(ep) {
+      return ep.match(/S\d+E(\d+)/)[1].replace(/0(\d+)/, "$1");
     },
   },
 };

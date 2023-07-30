@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import SeasonsView from "@/views/SeasonsView.vue";
 import EpisodeView from "@/views/EpisodeView.vue";
+
 const routes = [
   {
     path: "/",
@@ -8,9 +9,10 @@ const routes = [
     component: SeasonsView,
   },
   {
-    path: "/episode",
+    path: "/episode/:episodeId",
     name: "episode",
     component: EpisodeView,
+    props: true,
   },
 ];
 

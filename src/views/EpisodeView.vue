@@ -1,10 +1,20 @@
 <template>
-  <section class="episode"></section>
+  <section class="episode">
+    <EpisodeItem :episodeId="episodeId"></EpisodeItem>
+  </section>
 </template>
 
 <script>
+import EpisodeItem from "@/components/EpisodeItem.vue";
 export default {
   name: "EpisodeView",
+  components: { EpisodeItem },
+  props: {
+    episodeId: {
+      type: String,
+      default: "1",
+    },
+  },
 };
 </script>
 
