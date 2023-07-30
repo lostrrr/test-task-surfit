@@ -17,18 +17,12 @@
 </template>
 
 <script>
-import { getEpisodesBySeason } from "@/api/api";
 export default {
   name: "SeasonListItem",
-  data() {
-    return {
-      episodeList: [],
-    };
-  },
-  created() {
-    getEpisodesBySeason().then(
-      (episodes) => (this.episodeList = [...episodes])
-    );
+  props: {
+    episodeList: {
+      type: Array,
+    },
   },
 };
 </script>

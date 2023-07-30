@@ -1,9 +1,21 @@
 import { createStore } from "vuex";
-
+import { getEpisodesBySeason } from "@/api/api";
 export default createStore({
-  state: {},
+  state: {
+    episodeList: [],
+  },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    setEpisodeList(state, episodeList) {
+      state.episodeList = episodeList;
+    },
+  },
+  actions: {
+    fetchAllEpisodes({ commit }) {
+      getEpisodesBySeason().then((episodes) => {
+        commit("setEpisodeList", episodes);
+      });
+    },
+  },
   modules: {},
 });
