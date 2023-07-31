@@ -1,6 +1,6 @@
 <template>
   <div class="episode-item">
-    <div class="episode=item_wrapper">
+    <div class="episode-item_wrapper">
       <button class="episode-item back-btn">
         <router-link :to="{ name: 'seasons' }">К списку эпизодов</router-link>
       </button>
@@ -52,7 +52,7 @@ export default {
   font-size: 14px;
 }
 .episode-item_wrapper {
-  max-width: 960px;
+  max-width: 800px;
   margin: 0 auto;
 }
 .episode-item_title {

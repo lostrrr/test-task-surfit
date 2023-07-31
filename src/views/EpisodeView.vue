@@ -25,5 +25,6 @@ export default {
   background: #555555;
   max-width: 1140px;
   border-radius: 20px;
+  font-size: 17px;
 }
 </style>

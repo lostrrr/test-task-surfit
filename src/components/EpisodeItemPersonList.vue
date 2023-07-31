@@ -3,20 +3,46 @@
     <div class="person_item_list">
       <div>Список персонажей серии</div>
       <ul>
-        <li v-for="person in persons" :key="person.name">
+        <li
+          v-for="person in persons"
+          :key="person.name"
+          @click="selectPerson(person)"
+        >
           <span>{{ person.name }}</span>
         </li>
       </ul>
     </div>
+    <EpisodeItemPersonListCard
+      :selectedPerson="selectedPerson"
+    ></EpisodeItemPersonListCard>
   </div>
 </template>
 
 <script>
+import EpisodeItemPersonListCard from "./EpisodeItemPersonListCard.vue";
 export default {
   name: "EpisodeItemPersonList",
+  components: {
+    EpisodeItemPersonListCard,
+  },
   props: {
     persons: {
       type: Array,
+    },
+  },
+  data() {
+    return {
+      selectedPerson: {},
+    };
+  },
+  methods: {
+    selectPerson(person) {
+      this.selectedPerson = person;
+    },
+  },
+  watch: {
+    persons() {
+      this.selectedPerson = this.persons[0];
     },
   },
 };
@@ -38,8 +64,8 @@ export default {
 }
 .person_item_list li {
   background: #9e9e9e;
-  margin-top: 5px;
-  padding: 3px 10px 3px 10px;
+  margin-top: 7px;
+  padding: 4px 10px 4px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
