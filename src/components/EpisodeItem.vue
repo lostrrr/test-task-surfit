@@ -18,7 +18,9 @@
 <script>
 import { getEpisode, getCharacters } from "@/api/api";
 import EpisodeItemPersonList from "./EpisodeItemPersonList.vue";
+import transformDate from "@/components/mixins/transformDate";
 export default {
+  mixins: [transformDate],
   name: "EpisodeItem",
   components: {
     EpisodeItemPersonList,
@@ -39,6 +41,11 @@ export default {
       this.episode = ep;
       getCharacters(ep.characters).then((chars) => (this.persons = chars));
     });
+  },
+  watch: {
+    episode() {
+      this.episode.air_date = this.transformDate(this.episode.air_date);
+    },
   },
 };
 </script>

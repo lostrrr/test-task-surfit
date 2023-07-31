@@ -8,7 +8,7 @@
             <router-link :to="`/episode/${episode.id}`">
               Серия {{ getEpisodeNumber(episode.episode) }} "{{ episode.name }}"
               вышла
-              {{ episode.air_date }}
+              {{ transformDate(episode.air_date) }}
             </router-link>
           </li>
         </ul>
@@ -18,7 +18,9 @@
 </template>
 
 <script>
+import transformDate from "@/components/mixins/transformDate";
 export default {
+  mixins: [transformDate],
   name: "SeasonListItem",
   props: {
     episodeList: {
