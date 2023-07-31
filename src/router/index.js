@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import SeasonsView from "@/views/SeasonsView.vue";
 import EpisodeView from "@/views/EpisodeView.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
     component: EpisodeView,
     props: true,
   },
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
 const router = createRouter({
